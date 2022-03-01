@@ -1,0 +1,33 @@
+.UserContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  margin: 5px;
+}
+
+.AvatarContainer {
+  position: relative;
+}
+
+.UserAvatar:hover {
+  cursor: pointer;
+}
+
+.UserAvatar {
+  height: 40px;
+  width: 40px;
+}
+
+.UsernameContainer {
+  padding: 0 5px;
+  margin-left: 8px;
+}
+
+.Username {
+  font-weight: 700;
+}
+
+.Username:hover {
+  cursor: pointer;
+}

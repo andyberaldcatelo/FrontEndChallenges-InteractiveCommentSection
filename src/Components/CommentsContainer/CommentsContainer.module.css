@@ -1,0 +1,7 @@
+.Container {
+  width: 352px;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}

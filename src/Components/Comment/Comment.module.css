@@ -1,0 +1,141 @@
+.CommentContainer {
+  margin: 10px auto;
+  padding: 15px;
+  background-color: #ffffff;
+  width: 100%;
+}
+
+.ReplyContainer {
+  margin: 5px 5px 5px 25px;
+  padding: 15px;
+  background-color: #ffffff;
+  width: 100%;
+}
+
+.Row1 {
+  margin: 0 auto;
+  display: flex;
+  column-gap: 5px;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.You {
+  align-self: center;
+  justify-content: flex-start;
+  border-radius: 3px;
+  background-color: #5358b6;
+  height: fit-content;
+  padding: 2px 3px;
+  width: 30px;
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.CreatedAt {
+  width: fit-content;
+  color: #9c9da0;
+  align-self: center;
+  font-weight: 600;
+}
+
+.Row2 {
+  margin: 0 auto;
+}
+
+.Paragraph {
+  margin: 5px 0;
+  text-align: left;
+  padding: 0 10px;
+  margin: auto;
+}
+
+.Username {
+  margin: 0 3px;
+  color: #5f5fb6;
+}
+
+.Row3 {
+  display: flex;
+  margin: 8px 0 5px 0;
+  justify-content: space-between;
+  padding: 5px;
+}
+
+.ApprouvalCounter {
+  background-color: #dddfe8;
+  border-radius: 10px;
+  width: 80px;
+  height: 40px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.ApprouvalCounter span {
+  color: #5f5fb6;
+  margin: 0 5px 0 5px;
+  font-weight: 700;
+  align-self: center;
+}
+
+.CounterButtonPlus {
+  border-radius: 10px 0 0 10px;
+  background-color: inherit;
+  font-weight: 900;
+  cursor: pointer;
+  width: 25px;
+  height: 100%;
+  color: #5f5fb6;
+  border: none;
+  margin: 0;
+}
+
+.CounterButtonPlus:disabled {
+  color: #9c9da0;
+}
+
+.CounterButtonMinus {
+  border-radius: 0 10px 10px 0px;
+  background-color: inherit;
+  font-weight: 900;
+  cursor: pointer;
+  width: 25px;
+  height: 100%;
+  color: #5f5fb6;
+  border: none;
+  margin: 0;
+}
+
+.CounterButtonMinus:disabled {
+  color: #9c9da0;
+}
+
+.EditDeleteContainer {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.Icon {
+  font-size: 20px;
+  vertical-align: text-bottom;
+}
+
+.EditButton,
+.ReplyButton {
+  border: none;
+  color: #5f5fb6;
+  font-size: inherit;
+  cursor: pointer;
+  font-weight: 700;
+  margin: 0 3px;
+}
+
+.DeleteButton {
+  border: none;
+  color: #ed6369;
+  font-size: inherit;
+  cursor: pointer;
+  font-weight: 700;
+  margin: 0 3px;
+}

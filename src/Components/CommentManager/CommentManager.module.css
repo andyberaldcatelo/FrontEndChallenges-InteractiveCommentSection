@@ -1,0 +1,46 @@
+.CommentManagerContainer {
+  width: 100%;
+  background-color: #ffffff;
+  margin: 15px auto;
+  padding: 15px 10px;
+  border-radius: 10px;
+}
+
+.TextBox {
+  width: 90%;
+  border: 1px solid #00000083;
+  border-radius: 5px;
+  height: 30px;
+}
+
+.TextBox:focus {
+  outline: none !important;
+  background-color: #d7d9da;
+  border: 1px solid #000000;
+}
+
+.SubmitArea {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 40px;
+  margin: 10px auto;
+  width: 90%;
+}
+
+.Submit {
+  background-color: #5358b6;
+  text-transform: uppercase;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: 500;
+  width: 90px;
+  height: 40px;
+}
+
+.Submit:hover {
+  cursor: pointer;
+  background-color: #383fbb;
+}
