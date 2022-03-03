@@ -70,7 +70,9 @@ export default function Comment(props) {
         <div className={classes.UserContainer}>
           <User user={props.comment.user} />
         </div>
-        <div className={classes.You}>you</div>
+        {props.currentUser.username === props.comment.user.username ? (
+          <div className={classes.You}>you</div>
+        ) : null}
         <div className={classes.CreatedAt}>{props.comment.createdAt}</div>
       </div>
 

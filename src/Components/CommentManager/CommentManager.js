@@ -55,9 +55,12 @@ export default function CommentManager(props) {
    */
   useEffect(() => {
     if (props.editingData !== null && props.editingData !== undefined) {
-      if (props.editingData.comment.quote !== undefined) {
+      if (
+        props.editingData.comment.quote !== undefined &&
+        props.editingData.comment.quote !== null
+      ) {
         let content = props.editingData.comment.quote.concat(
-          "",
+          " ",
           props.editingData.comment.content
         );
         setUserInput(content);
@@ -69,8 +72,6 @@ export default function CommentManager(props) {
 
   // 3 uses-cases are possible
   const onUserSubmit = () => {
-    // setUserInput(textInputRef.current.value);
-
     // 1# User is just creating a brand new top level comment --> replyingTo is null so we call the function for creating the comment with the userInput and reset the text in the input
     if (
       props.replyingTo === null &&
@@ -83,7 +84,10 @@ export default function CommentManager(props) {
     }
 
     // 2# User is replying to a comment --> replyingTo is not null so we call the function for replying to a comment, then we clear the text in the input
-    if (props.replyingTo !== null) {
+    if (
+      props.replyingTo !== null &&
+      (props.editingData === null || props.editingData === undefined)
+    ) {
       props.handleUserReply(
         userInput,
         props.replyingTo,

@@ -80,33 +80,60 @@ export default function CommentsContainer(props) {
     let content = "";
     let isThereQuote = isThereAQuote(updatedContent);
     let quote = null;
+    let newComment = null;
 
-    if (isThereQuote.bool) {
+    // There is a quote and it exists exists in the usernames database
+    if (
+      isThereQuote.bool === true &&
+      doesQuoteMatchDatabase(isThereQuote.quote, usernames) === true
+    ) {
       quote = isThereQuote.quote;
       content = extractContent(updatedContent);
-    } else {
-      content = updatedContent;
+      newComment = {
+        ...editingData.comment,
+        content: content,
+        quote: quote,
+      };
     }
-    let newComment = {
-      ...editingData.comment,
-      content: content,
-      quote: quote,
-    };
-    console.log("newComment", newComment);
-    let newComments = [...comments];
 
+    // There is a quote, but it does not exists in usernames database
+    if (
+      isThereQuote.bool === true &&
+      doesQuoteMatchDatabase(isThereQuote.quote, usernames) === false
+    ) {
+      newComment = {
+        ...editingData.comment,
+        content: updatedContent,
+        quote: null,
+      };
+    }
+
+    // There is no quote
+    if (isThereQuote.bool === false) {
+      newComment = {
+        ...editingData.comment,
+        content: updatedContent,
+        quote: null,
+      };
+    }
+
+    let newComments = [...comments];
     if (
       editingData.rootCommentId !== null &&
       editingData.rootCommentId !== undefined
     ) {
-      newComments[editingData.rootCommentId].replies[editingData.id] =
-        newComment;
+      newComments[editingData.rootCommentId].replies.splice(
+        newComment.id,
+        1,
+        newComment
+      );
       setComments(newComments);
+      setEditingData(null);
       return;
     }
-
     newComments[editingData.id] = newComment;
     setComments(newComments);
+    setEditingData(null);
     return;
   };
 
@@ -115,8 +142,6 @@ export default function CommentsContainer(props) {
   };
 
   /**
-   *
-   *
    * Render
    */
 
@@ -128,6 +153,7 @@ export default function CommentsContainer(props) {
       return (
         <Comment
           id={comment.id}
+          key={`${comment.id}`}
           comment={comment}
           currentUser={props.currentUser}
           handleClickReply={handleClickReply}
@@ -140,6 +166,7 @@ export default function CommentsContainer(props) {
       return (
         <Comment
           id={reply.id}
+          key={`${comment.id}_${reply.id}`}
           rootCommentId={comment.id}
           replyingToId={comment.id}
           comment={reply}
@@ -156,6 +183,7 @@ export default function CommentsContainer(props) {
       <>
         <Comment
           id={comment.id}
+          key={comment.id}
           comment={comment}
           currentUser={props.currentUser}
           handleClickReply={handleClickReply}
@@ -192,39 +220,6 @@ export default function CommentsContainer(props) {
 
     setComments(newCommentsArray);
   };
-
-  // Utility functions
-  /* 
-  const isThereAQuote = (content) => {
-    if (content.startsWith("@")) {
-      let quote = extractQuote(content);
-      return { bool: true, quote: quote };
-    }
-    return { bool: false, quote: null };
-  };
-
-   const extractQuote = (content) => {
-    let stringArray = [...content.split(" ")];
-    return stringArray[0];
-  };
- 
-  const extractContent = (content) => {
-    let stringArray = [...content.split(" ")];
-    return stringArray.slice(1).join(" ");
-  };
-
-  const doesQuoteMatchWithUsername = (quote, replyingTo) => {
-    if (replyingTo.startsWith("@") === false) {
-      let newReplyingTo = "@".concat(replyingTo);
-      return quote === newReplyingTo;
-    }
-    return quote === replyingTo;
-  };
-
-  
-  const doesQuoteMatchDatabase = (quote) => {
-    return usernames.includes(quote.slice(1));
-  }; */
 
   /**
    *
