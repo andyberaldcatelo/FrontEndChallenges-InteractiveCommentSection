@@ -11,6 +11,8 @@
   border: 1px solid #00000083;
   border-radius: 5px;
   height: 30px;
+  resize: none;
+  transition: 0.5s;
 }
 
 .TextBox:focus {

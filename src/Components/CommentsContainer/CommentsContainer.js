@@ -21,6 +21,7 @@ export default function CommentsContainer(props) {
   const [editingData, setEditingData] = useState(null); // Hole data (properties & functions) that are used to edit a specific comment
   let jsxComment = null; // Comments that will be displayed via JSX
 
+  ////// Side Effects ////////
   /**
    * Setting up the usernames array
    *  Getting every username in the database while making sure each username is unique
@@ -45,6 +46,7 @@ export default function CommentsContainer(props) {
     setUsernames(newUsernames);
   }, [comments]);
 
+  ////// Functions ////////
   const handleClickReply = (
     username,
     commentId,
@@ -141,61 +143,6 @@ export default function CommentsContainer(props) {
     setIsReplyButtonClicked(false);
   };
 
-  /**
-   * Render
-   */
-
-  jsxComment = comments.map((comment) => {
-    let replies = [...comment.replies];
-
-    /* Guard */
-    if (replies.length === 0) {
-      return (
-        <Comment
-          id={comment.id}
-          key={`${comment.id}`}
-          comment={comment}
-          currentUser={props.currentUser}
-          handleClickReply={handleClickReply}
-          handleDelete={handleDelete}
-          handleEditClick={handleEditClick}
-        />
-      );
-    }
-    let repliesJSX = replies.map((reply) => {
-      return (
-        <Comment
-          id={reply.id}
-          key={`${comment.id}_${reply.id}`}
-          rootCommentId={comment.id}
-          replyingToId={comment.id}
-          comment={reply}
-          currentUser={props.currentUser}
-          isReply={true}
-          handleClickReply={handleClickReply}
-          handleDelete={handleDelete}
-          handleEditClick={handleEditClick}
-        />
-      );
-    });
-
-    return (
-      <>
-        <Comment
-          id={comment.id}
-          key={comment.id}
-          comment={comment}
-          currentUser={props.currentUser}
-          handleClickReply={handleClickReply}
-          handleDelete={handleDelete}
-          handleEditClick={handleEditClick}
-        />
-        {repliesJSX}
-      </>
-    );
-  });
-
-  /* Functions */
   const handleUserComment = (userInput) => {
     let maxId = 0;
     let newCommentsArray = [...comments];
@@ -352,6 +299,57 @@ export default function CommentsContainer(props) {
       return;
     }
   };
+
+  ////// Render ////////
+  jsxComment = comments.map((comment) => {
+    let replies = [...comment.replies];
+
+    /* Guard */
+    if (replies.length === 0) {
+      return (
+        <Comment
+          id={comment.id}
+          key={`${comment.id}`}
+          comment={comment}
+          currentUser={props.currentUser}
+          handleClickReply={handleClickReply}
+          handleDelete={handleDelete}
+          handleEditClick={handleEditClick}
+        />
+      );
+    }
+    let repliesJSX = replies.map((reply) => {
+      return (
+        <Comment
+          id={reply.id}
+          key={`${comment.id}_${reply.id}`}
+          rootCommentId={comment.id}
+          replyingToId={comment.id}
+          comment={reply}
+          currentUser={props.currentUser}
+          isReply={true}
+          handleClickReply={handleClickReply}
+          handleDelete={handleDelete}
+          handleEditClick={handleEditClick}
+        />
+      );
+    });
+
+    return (
+      <>
+        <Comment
+          id={comment.id}
+          key={comment.id}
+          comment={comment}
+          currentUser={props.currentUser}
+          handleClickReply={handleClickReply}
+          handleDelete={handleDelete}
+          handleEditClick={handleEditClick}
+        />
+        {repliesJSX}
+      </>
+    );
+  });
 
   return (
     <div className={classes.Container}>

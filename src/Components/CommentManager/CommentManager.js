@@ -6,6 +6,8 @@ export default function CommentManager(props) {
   const [userInput, setUserInput] = useState("");
   const textInputRef = useRef("");
 
+  ////// Side Effects ////////
+
   /**
    * Handling focus and value of the text input when replying to someone
    */
@@ -70,6 +72,7 @@ export default function CommentManager(props) {
     }
   }, [props.editingData]);
 
+  ////// Functions ////////
   // 3 uses-cases are possible
   const onUserSubmit = () => {
     // 1# User is just creating a brand new top level comment --> replyingTo is null so we call the function for creating the comment with the userInput and reset the text in the input

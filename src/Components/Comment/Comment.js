@@ -16,18 +16,7 @@ export default function Comment(props) {
   const [incrBtnDisabled, setIncrBtnDisabled] = useState(false);
   const [decremBtnDisabled, setDecremBtnDisabled] = useState(false);
 
-  /* Functions */
-  const handleIncrementScore = function () {
-    setScore((score) => score + 1);
-  };
-
-  const handleDecrementScore = function () {
-    if (score >= 1) setScore((score) => score - 1);
-  };
-
-  /**
-   * Side-Effects
-   */
+  //// Side Effects ////
   useEffect(() => {
     switch (score - props.comment.score) {
       case 0:
@@ -47,10 +36,17 @@ export default function Comment(props) {
     }
   }, [score, props.comment.score]);
 
-  /**
-   *  On mounting component
-   */
-  //  Crafting comment according to props
+  //// Functions ////
+  const handleIncrementScore = function () {
+    setScore((score) => score + 1);
+  };
+
+  const handleDecrementScore = function () {
+    if (score >= 1) setScore((score) => score - 1);
+  };
+
+  //// Render ////
+  /**  Crafting comment according to props */
   if (props.comment.quote) {
     content = (
       <>
